@@ -31,6 +31,18 @@ pipeline {
         sh 'mvn test'
       }
     }
+    stage('SonarQube analysis') {
+        withSonarQubeEnv('Sonartest') {
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2.0.1227:sonar ' +
+          '-f all/pom.xml ' +
+          '-Dsonar.projectKey=com.mycompany:all:master ' +
+          '-Dsonar.language=java ' +
+          '-Dsonar.sources=. ' +
+          '-Dsonar.tests=. ' +
+          '-Dsonar.test.inclusions=**/*Test*/** ' +
+          '-Dsonar.exclusions=**/*Test*/**'
+        }
+    }
   }
   environment {
     environment = 'dev'
