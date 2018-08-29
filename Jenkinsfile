@@ -24,11 +24,11 @@ pipeline {
             echo '222'
           }
         }
-        stage('Fail') {
-          steps {
-            error 'uh oh'
-          }
-        }
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'mvn test'
       }
     }
   }
