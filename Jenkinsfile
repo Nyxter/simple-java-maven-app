@@ -67,7 +67,7 @@ pipeline {
     stage('Example Sonatype') {
       steps {
         echo 'not master branch Deploying'
-        echo expression{ params.PT_BRANCH_TAG }
+        expression{ params.BUILD_TAG }
         echo branch
       }
       when {
