@@ -84,27 +84,27 @@ pipeline {
         echo 'Deploying'
       }
     }
-    stage('365 Webhook') {
-      when {
-        expression { params.DEPLOY == 'prod' }
-      }
-
-      steps {
-        configure { root ->
-          root / 'properties' / 'jenkins.plugins.office365connector.WebhookJobProperty' (plugin:'Office-365-Connector@4.5') / 'webhooks' / 'jenkins.plugins.office365connector.Webhook' {
-            url 'www.test.com'
-            startNotification true
-            notifySuccess true
-            notifyAborted false
-            notifyNotBuilt false
-            notifyUnstable false
-            notifyFailure true
-            notifyBackToNormal false
-            notifyRepeatedFailure false
-            timeout '30000'
-          }
-        }
-      }
-    }
+//    stage('365 Webhook') {
+//      when {
+//        expression { params.DEPLOY == 'prod' }
+//      }
+//
+//      steps {
+//        configure { root ->
+//          root / 'properties' / 'jenkins.plugins.office365connector.WebhookJobProperty' (plugin:'Office-365-Connector@4.5') / 'webhooks' / 'jenkins.plugins.office365connector.Webhook' {
+//            url 'www.test.com'
+//            startNotification true
+//            notifySuccess true
+//            notifyAborted false
+//            notifyNotBuilt false
+//            notifyUnstable false
+//            notifyFailure true
+//            notifyBackToNormal false
+//            notifyRepeatedFailure false
+//            timeout '30000'
+//          }
+//        }
+//      }
+//    }
   }
 }
