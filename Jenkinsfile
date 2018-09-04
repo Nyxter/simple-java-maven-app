@@ -4,6 +4,9 @@ pipeline {
     maven 'Mvn3'
     jdk 'jdk8'
   }
+  options {
+    office365ConnectorWebhooks([[macros: [[template: '${DEPLOY}', value: 'prod']], name: 'NotifyJob', notifyBackToNormal: true, notifyFailure: true, notifySuccess: true, notifyUnstable: true, url: 'www.test.com']])
+  }
   parameters {
     gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: 'The branch or tag to build', name: 'BUILD_TAG', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
     choice(
@@ -25,6 +28,7 @@ pipeline {
         sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
+                    echo "TODO: install non maven libs - without shell script??"
                 '''
       }
     }
@@ -84,27 +88,5 @@ pipeline {
         echo 'Deploying'
       }
     }
-//    stage('365 Webhook') {
-//      when {
-//        expression { params.DEPLOY == 'prod' }
-//      }
-//
-//      steps {
-//        configure { root ->
-//          root / 'properties' / 'jenkins.plugins.office365connector.WebhookJobProperty' (plugin:'Office-365-Connector@4.5') / 'webhooks' / 'jenkins.plugins.office365connector.Webhook' {
-//            url 'www.test.com'
-//            startNotification true
-//            notifySuccess true
-//            notifyAborted false
-//            notifyNotBuilt false
-//            notifyUnstable false
-//            notifyFailure true
-//            notifyBackToNormal false
-//            notifyRepeatedFailure false
-//            timeout '30000'
-//          }
-//        }
-//      }
-//    }
   }
 }
