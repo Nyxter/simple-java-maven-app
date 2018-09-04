@@ -4,9 +4,11 @@ pipeline {
     maven 'Mvn3'
     jdk 'jdk8'
   }
+
   options {
     office365ConnectorWebhooks([[macros: [[template: '${DEPLOY}', value: 'prod']], name: 'NotifyJob', notifyBackToNormal: true, notifyFailure: true, notifySuccess: true, notifyUnstable: true, url: 'www.test.com']])
   }
+
   parameters {
     gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: 'The branch or tag to build', name: 'BUILD_TAG', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
     choice(
@@ -42,11 +44,11 @@ pipeline {
         }
       }
     }
-//    stage('Example findbugs') {
-//      steps {
-//        step([$class: 'FindBugsPublisher', pattern: "*/findbugs/main.xml", unstableTotalAll: '0'])
-//      }
-//    }
+    stage('Example findbugs') {
+      steps {
+        step([$class: 'FindBugsPublisher', pattern: "*/findbugs/main.xml", unstableTotalAll: '0'])
+      }
+    }
 
 
     stage('Not release') {
