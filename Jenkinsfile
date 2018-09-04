@@ -8,7 +8,7 @@ pipeline {
     choice(
             // choices are a string of newline separated values
             // https://issues.jenkins-ci.org/browse/JENKINS-41180
-            choices: 'release\nnah',
+            choices: 'na\nrelease',
             description: '',
             name: 'REQUESTED_ACTION')
   }
@@ -59,7 +59,7 @@ pipeline {
 
     stage('Example Sonatype') {
       steps {
-        echo 'Deploying'
+        echo 'not master branch Deploying'
       }
       when {
         not {
