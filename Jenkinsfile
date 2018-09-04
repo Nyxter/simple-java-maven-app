@@ -28,18 +28,6 @@ pipeline {
                 '''
       }
     }
-//    stage('Example Checkout') {
-//      steps {
-//        checkout([$class: 'GitSCM',
-//                  branches: [[name: "${params.BUILD_TAG}"]],
-//                  doGenerateSubmoduleConfigurations: false,
-//                  extensions: [],
-//                  gitTool: 'Default',
-//                  submoduleCfg: [],
-//                  userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-parameter-plugin.git']]
-//        ])
-//      }
-//    }
     stage ('Build') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore=true install'
@@ -94,6 +82,25 @@ pipeline {
       }
       steps {
         echo 'Deploying'
+      }
+    }
+    stage('365 Webhook') {
+      expression { params.DEPLOY == 'prod' }
+      steps {
+        configure { root ->
+          root / 'properties' / 'jenkins.plugins.office365connector.WebhookJobProperty' (plugin:'Office-365-Connector@4.5') / 'webhooks' / 'jenkins.plugins.office365connector.Webhook' {
+            url 'www.test.com'
+            startNotification true
+            notifySuccess true
+            notifyAborted false
+            notifyNotBuilt false
+            notifyUnstable false
+            notifyFailure true
+            notifyBackToNormal false
+            notifyRepeatedFailure false
+            timeout '30000'
+          }
+        }
       }
     }
   }
