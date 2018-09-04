@@ -5,6 +5,7 @@ pipeline {
     jdk 'jdk8'
   }
   parameters {
+    gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: 'The branch or tag to build', name: 'BUILD_TAG', quickFilterEnabled: false, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
     choice(
             // choices are a string of newline separated values
             // https://issues.jenkins-ci.org/browse/JENKINS-41180
@@ -66,6 +67,7 @@ pipeline {
     stage('Example Sonatype') {
       steps {
         echo 'not master branch Deploying'
+        echo expression{ params.PT_BRANCH_TAG }
         echo branch
       }
       when {
