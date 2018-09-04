@@ -66,6 +66,7 @@ pipeline {
     stage('Example Sonatype') {
       steps {
         echo 'not master branch Deploying'
+        echo branch
       }
       when {
         not {
