@@ -10,7 +10,13 @@ pipeline {
             // https://issues.jenkins-ci.org/browse/JENKINS-41180
             choices: 'na\nrelease',
             description: '',
-            name: 'REQUESTED_ACTION')
+            name: 'BRANCH')
+    choice(
+            // choices are a string of newline separated values
+            // https://issues.jenkins-ci.org/browse/JENKINS-41180
+            choices: 'no\ndev\ntest\nprod',
+            description: '',
+            name: 'DEPLOY')
   }
   stages {
     stage('Initialize') {
@@ -43,9 +49,7 @@ pipeline {
         echo 'not release'
       }
       when {
-        not {
-          expression { params.REQUESTED_ACTION == 'release' }
-        }
+        expression { params.DEPLOY == 'no' }
       }
     }
     stage('release') {
@@ -53,7 +57,9 @@ pipeline {
         echo 'release'
       }
       when {
-        expression { params.REQUESTED_ACTION == 'release' }
+        not {
+          expression { params.DEPLOY == 'no' }
+        }
       }
     }
 
