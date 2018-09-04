@@ -48,7 +48,7 @@ pipeline {
         }
       }
     }
-    stage('Example Sonatype') {
+    stage('release') {
       steps {
         echo 'release'
       }
