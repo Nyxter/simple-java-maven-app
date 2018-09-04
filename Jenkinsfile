@@ -28,18 +28,18 @@ pipeline {
                 '''
       }
     }
-    stage('Example Checkout') {
-      steps {
-        checkout([$class: 'GitSCM',
-                  branches: [[name: "${params.BUILD_TAG}"]],
-                  doGenerateSubmoduleConfigurations: false,
-                  extensions: [],
-                  gitTool: 'Default',
-                  submoduleCfg: [],
-                  userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-parameter-plugin.git']]
-        ])
-      }
-    }
+//    stage('Example Checkout') {
+//      steps {
+//        checkout([$class: 'GitSCM',
+//                  branches: [[name: "${params.BUILD_TAG}"]],
+//                  doGenerateSubmoduleConfigurations: false,
+//                  extensions: [],
+//                  gitTool: 'Default',
+//                  submoduleCfg: [],
+//                  userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-parameter-plugin.git']]
+//        ])
+//      }
+//    }
     stage ('Build') {
       steps {
         sh 'mvn -Dmaven.test.failure.ignore=true install'
