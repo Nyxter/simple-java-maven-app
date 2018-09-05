@@ -84,5 +84,42 @@ pipeline {
                 expression { params.DEPLOY == 'prod' }
             }
         }
+
+        stage ('sequentialParallel'){
+            stages {
+                stage('In Sequential 1') {
+                    steps {
+                        echo "In Sequential 1"
+                    }
+                }
+                parallel {
+                    stage('Branch A') {
+                        steps {
+                            echo "On Branch A"
+                        }
+                    }
+                    stage('Branch B') {
+                        steps {
+                            echo "On Branch B"
+                        }
+                    }
+                    stage('Branch c') {
+                        steps {
+                            echo "On Branch d"
+                        }
+                    }
+                    stage('Branch d') {
+                        steps {
+                            echo "On Branch c"
+                        }
+                    }
+                }
+                stage('In Sequential 3') {
+                    steps {
+                        echo "In Sequential 1"
+                    }
+                }
+            }
+        }
     }
 }
