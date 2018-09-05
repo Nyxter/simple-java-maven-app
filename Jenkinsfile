@@ -39,7 +39,7 @@ pipeline {
         }
       }
     }
-    stage('Example findbugs') {
+    stage('Compile Findbugs Report') {
       steps {
         step([$class: 'FindBugsPublisher', unstableTotalAll: '0'])
       }
