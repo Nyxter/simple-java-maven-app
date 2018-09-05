@@ -12,6 +12,9 @@ public class App
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
+        if false{
+            System.out.println('oops');
+        }
     }
 
     private final String getMessage() {
