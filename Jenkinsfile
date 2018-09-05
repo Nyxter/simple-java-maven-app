@@ -92,25 +92,27 @@ pipeline {
                         echo "In Sequential 1"
                     }
                 }
-                parallel {
-                    stage('Branch A') {
-                        steps {
-                            echo "On Branch A"
+                stage('Parallel Stage 2') {
+                    parallel {
+                        stage('Branch A') {
+                            steps {
+                                echo "On Branch A"
+                            }
                         }
-                    }
-                    stage('Branch B') {
-                        steps {
-                            echo "On Branch B"
+                        stage('Branch B') {
+                            steps {
+                                echo "On Branch B"
+                            }
                         }
-                    }
-                    stage('Branch c') {
-                        steps {
-                            echo "On Branch d"
+                        stage('Branch c') {
+                            steps {
+                                echo "On Branch d"
+                            }
                         }
-                    }
-                    stage('Branch d') {
-                        steps {
-                            echo "On Branch c"
+                        stage('Branch d') {
+                            steps {
+                                echo "On Branch c"
+                            }
                         }
                     }
                 }
