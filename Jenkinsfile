@@ -48,7 +48,8 @@ pipeline {
 
     stage('Not release') {
       steps {
-        echo 'not release'
+        echo 'not' +
+                ' release'
       }
       when {
         expression { params.DEPLOY == 'no' }
