@@ -39,11 +39,11 @@ pipeline {
         }
       }
     }
-    stage('Compile Findbugs Report') {
-      steps {
-        step([$class: 'FindBugsPublisher',pattern: "*/findbugs.xml",  unstableTotalAll: '0'])
-      }
-    }
+//    stage('Compile Findbugs Report') {
+//      steps {
+//        step([$class: 'FindBugsPublisher',pattern: "*/findbugs.xml",  unstableTotalAll: '0'])
+//      }
+//    }
 
 
     stage('Not release') {
