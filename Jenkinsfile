@@ -46,7 +46,7 @@ pipeline {
     }
     stage('Example findbugs') {
       steps {
-        step([$class: 'FindBugsPublisher', pattern: "*/findbugs/main.xml", unstableTotalAll: '0'])
+        step([$class: 'FindBugsPublisher', unstableTotalAll: '0'])
       }
     }
 
