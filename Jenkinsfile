@@ -31,7 +31,7 @@ pipeline {
     }
     stage ('Build') {
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true install findbugs:findbugs'
+        sh 'mvn install findbugs:findbugs'
       }
       post {
         success {
@@ -41,7 +41,7 @@ pipeline {
     }
     stage('Compile Findbugs Report') {
       steps {
-        step([$class: 'FindBugsPublisher', unstableTotalAll: '0'])
+        step([$class: 'FindBugsPublisher',pattern: "*/findbugs.xml",  unstableTotalAll: '0'])
       }
     }
 
