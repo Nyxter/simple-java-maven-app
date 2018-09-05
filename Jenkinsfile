@@ -57,18 +57,18 @@ pipeline {
         }
 
         stage('DEPLOY to environment') {
-            stage('deploy') {
-                parallel (
+            parallel(
                     dev: {
                         echo "dev"
                     },
                     test: { echo "prod" },
                     prod: { echo "prod" }
-                )
-            }
+            )
 
             when {
-                expression { params.DEPLOY == 'no' }
+                not {
+                    expression { params.DEPLOY == 'no' }
+                }
             }
         }
     }
