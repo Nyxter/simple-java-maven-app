@@ -11,9 +11,7 @@ pipeline {
 
     parameters {
         gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: 'The branch or tag to build', name: 'BUILD_TAG', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
-        parameters {
-            booleanParam defaultValue: false, description: '', name: 'PUBLISH_FTP'
-        }
+        booleanParam defaultValue: false, description: '', name: 'PUBLISH_FTP'
         choice(
                 choices: 'N/A\ndev\ntest\nprod',
                 description: '',
