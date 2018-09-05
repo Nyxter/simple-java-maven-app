@@ -32,6 +32,28 @@
           </archive>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.5</version>
+            <configuration>
+                <xmlOutput>true</xmlOutput>
+                <!-- For Jenkins -->
+                <failOnError>false</failOnError>
+                <includeTests>true</includeTests>
+                <threshold>Low</threshold>
+                <effort>Max</effort>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>run-findbugs</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>findbugs</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
   </build>
 </project>

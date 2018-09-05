@@ -12,14 +12,10 @@ pipeline {
   parameters {
     gitParameter branch: '', branchFilter: '.*', defaultValue: '', description: 'The branch or tag to build', name: 'BUILD_TAG', quickFilterEnabled: true, selectedValue: 'NONE', sortMode: 'NONE', tagFilter: '*', type: 'PT_BRANCH_TAG'
     choice(
-            // choices are a string of newline separated values
-            // https://issues.jenkins-ci.org/browse/JENKINS-41180
             choices: 'na\nrelease',
             description: '',
             name: 'BRANCH')
     choice(
-            // choices are a string of newline separated values
-            // https://issues.jenkins-ci.org/browse/JENKINS-41180
             choices: 'no\ndev\ntest\nprod',
             description: '',
             name: 'DEPLOY')
@@ -27,8 +23,7 @@ pipeline {
   stages {
     stage('Initialize') {
       steps {
-        sh '''
-                    echo "PATH = ${PATH}"
+        sh '''      echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     echo "TODO: install non maven libs - without shell script??"
                 '''
@@ -36,7 +31,7 @@ pipeline {
     }
     stage ('Build') {
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true install'
+        sh 'mvn -Dmaven.test.failure.ignore=true install findbugs:findbugs'
       }
       post {
         success {
