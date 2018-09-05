@@ -94,22 +94,22 @@ pipeline {
                 }
                 stage('Parallel Stage 2') {
                     parallel {
-                        stage('Branch A') {
+                        a: {
                             steps {
                                 echo "On Branch A"
                             }
                         }
-                        stage('Branch B') {
+                        b: {
                             steps {
                                 echo "On Branch B"
                             }
                         }
-                        stage('Branch c') {
+                        c: {
                             steps {
                                 echo "On Branch d"
                             }
                         }
-                        stage('Branch d') {
+                        d: {
                             steps {
                                 echo "On Branch c"
                             }
