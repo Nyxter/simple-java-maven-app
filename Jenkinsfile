@@ -56,21 +56,33 @@ pipeline {
             }
         }
 
-        stage('DEPLOY to environment') {
+        stage('Dev Deploy') {
             steps {
-                parallel(
-                        dev: {
-                            echo "dev"
-                        },
-                        test: { echo "prod" },
-                        prod: { echo "prod" }
-                )
+                echo "dev"
             }
 
             when {
-                not {
-                    expression { params.DEPLOY == 'no' }
-                }
+                expression { params.DEPLOY == 'dev' }
+            }
+        }
+
+        stage('Test Deploy') {
+            steps {
+                echo "test"
+            }
+
+            when {
+                expression { params.DEPLOY == 'test' }
+            }
+        }
+
+        stage('Prod Deploy') {
+            steps {
+                echo "prod"
+            }
+
+            when {
+                expression { params.DEPLOY == 'prod' }
             }
         }
     }
