@@ -57,13 +57,15 @@ pipeline {
         }
 
         stage('DEPLOY to environment') {
-            parallel(
-                    dev: {
-                        echo "dev"
-                    },
-                    test: { echo "prod" },
-                    prod: { echo "prod" }
-            )
+            steps {
+                parallel(
+                        dev: {
+                            echo "dev"
+                        },
+                        test: { echo "prod" },
+                        prod: { echo "prod" }
+                )
+            }
 
             when {
                 not {
