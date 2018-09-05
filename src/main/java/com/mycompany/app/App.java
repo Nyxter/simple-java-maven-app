@@ -12,9 +12,13 @@ public class App
 
     public static void main(String[] args) {
         System.out.println(new App().getMessage());
-        if (false){
+        if ( false == false ){
             System.out.println("oops");
         }
+    }
+
+    public void missed(){
+        String.format("%d", "1");
     }
 
     private final String getMessage() {
