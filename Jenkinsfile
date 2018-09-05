@@ -82,7 +82,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        echo 'Deployin g'
+        echo 'Deploying'
       }
     }
   }
