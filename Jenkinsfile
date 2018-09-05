@@ -85,43 +85,5 @@ pipeline {
             }
         }
 
-        stage ('sequentialParallel'){
-            stages {
-                stage('In Sequential 1') {
-                    steps {
-                        echo "In Sequential 1"
-                    }
-                }
-                stage('Parallel Stage 2') {
-                    parallel (
-                        a: {
-                            steps {
-                                echo "On Branch A"
-                            }
-                        },
-                        b: {
-                            steps {
-                                echo "On Branch B"
-                            }
-                        },
-                        c: {
-                            steps {
-                                echo "On Branch d"
-                            }
-                        },
-                        d: {
-                            steps {
-                                echo "On Branch c"
-                            }
-                        }
-                    )
-                }
-                stage('In Sequential 3') {
-                    steps {
-                        echo "In Sequential 1"
-                    }
-                }
-            }
-        }
     }
 }
