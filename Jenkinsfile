@@ -39,44 +39,44 @@ pipeline {
         }
       }
     }
-    stage('Compile Findbugs Report') {
-      steps {
-        step([$class: 'FindBugsPublisher',pattern: "*/findbugs.xml",  unstableTotalAll: '0'])
-      }
-    }
-
-
-    stage('Not release') {
-      steps {
-        echo 'not release'
-      }
-      when {
-        expression { params.DEPLOY == 'no' }
-      }
-    }
-    stage('release') {
-      steps {
-        echo 'release'
-      }
-      when {
-        not {
-          expression { params.DEPLOY == 'no' }
-        }
-      }
-    }
-
-    stage('Example Sonatype') {
-      steps {
-        echo 'not master branch Deploying'
-        expression{ params.BUILD_TAG }
-        echo branch
-      }
-      when {
-        not {
-          branch 'master'
-        }
-      }
-    }
+//    stage('Compile Findbugs Report') {
+//      steps {
+//        step([$class: 'FindBugsPublisher',pattern: "*/findbugs.xml",  unstableTotalAll: '0'])
+//      }
+//    }
+//
+//
+//    stage('Not release') {
+//      steps {
+//        echo 'not release'
+//      }
+//      when {
+//        expression { params.DEPLOY == 'no' }
+//      }
+//    }
+//    stage('release') {
+//      steps {
+//        echo 'release'
+//      }
+//      when {
+//        not {
+//          expression { params.DEPLOY == 'no' }
+//        }
+//      }
+//    }
+//
+//    stage('Example Sonatype') {
+//      steps {
+//        echo 'not master branch Deploying'
+//        expression{ params.BUILD_TAG }
+//        echo branch
+//      }
+//      when {
+//        not {
+//          branch 'master'
+//        }
+//      }
+//    }
     stage('Example FTP') {
       when {
         branch 'master'
